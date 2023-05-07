@@ -75,7 +75,8 @@ def read_container(input_file: str) -> Generator[np.ndarray, None, None]:
 
                 # choose the Y plane (the first one)
                 np.frombuffer(frame.planes[0], datatype)
-                .reshape(frame.height, frame.width).astype("int")
+                .reshape(frame.height, -1).astype("int")
+                #.reshape(frame.height, frame.width).astype("int")
             )
         except ValueError as e:
             raise RuntimeError(
